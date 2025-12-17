@@ -611,10 +611,10 @@ class RanbooruPrompt:
         add_tags = '&tags=-animated'
         if tags:
             add_tags += '+' + tags.replace(',', '+')
-            if mature_rating != 'All':
-                token = _rating_token(booru, mature_rating)
-                if token != 'All':
-                    add_tags += f"+rating:{token}"
+        if mature_rating != 'All':
+            token = _rating_token(booru, mature_rating)
+            if token != 'All':
+                add_tags += f"+rating:{token}"
 
         api = self._build_booru(booru, fringe_benefits=True, api_key=api_key, user_id=user_id)
         data = api.get_post(add_tags, max_pages, post_id) if post_id else api.get_data(add_tags, max_pages)
